@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-2-15 18:21:23 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="tk.snolin.entity.BasicInfo" table="basicinfo">
+        <id name="projectno" type="java.lang.String">
+            <column name="projectno" />
+            <generator class="assigned" />
+        </id>
+        <property name="projectname" type="java.lang.String">
+            <column name="projectname" />
+        </property>
+        <many-to-one name="fzr" class="tk.snolin.entity.Fzr" fetch="join" lazy="false">
+            <column name="fzrgh" />
+        </many-to-one>
+        <many-to-one name="ktjb" class="tk.snolin.entity.Ktjb" fetch="join" lazy="false">
+            <column name="ktjbdm" />
+        </many-to-one>
+        <many-to-one name="ktsx" class="tk.snolin.entity.Ktsx" fetch="join" lazy="false">
+            <column name="ktsxdm" />
+        </many-to-one>
+        <many-to-one name="ktlb" class="tk.snolin.entity.Ktlb" fetch="join" lazy="false">
+            <column name="ktlbdm" />
+        </many-to-one>
+        <many-to-one name="ktfx" class="tk.snolin.entity.Ktfx" fetch="join" lazy="false">
+            <column name="ktfxdm" />
+        </many-to-one>
+        <many-to-one name="xkfl" class="tk.snolin.entity.Xkfl" fetch="join" lazy="false">
+            <column name="xkfldm" />
+        </many-to-one>
+        <many-to-one name="jtfs" class="tk.snolin.entity.Jtfs" fetch="join" lazy="false">
+            <column name="jtfsdm" />
+        </many-to-one>
+        <many-to-one name="sbdw" class="tk.snolin.entity.Sbdw" fetch="join" lazy="false">
+            <column name="sbdwdm" />
+        </many-to-one>
+        <many-to-one name="jfly" class="tk.snolin.entity.Jfly" fetch="join" lazy="false">
+            <column name="jflydm" />
+        </many-to-one>
+        <many-to-one name="bftj" class="tk.snolin.entity.Bftj" fetch="join" lazy="false">
+            <column name="bftjdm" />
+        </many-to-one>
+        <property name="pzsj" type="java.util.Date">
+            <column name="pzsj" />
+        </property>
+        <property name="wcsj" type="java.util.Date">
+            <column name="wcsj" />
+        </property>
+        <property name="zjf" type="int">
+            <column name="zjf" />
+        </property>
+        <property name="member1" type="java.lang.String">
+            <column name="member1" />
+        </property>
+        <property name="member2" type="java.lang.String">
+            <column name="member2" />
+        </property>
+        <property name="member3" type="java.lang.String">
+            <column name="member3" />
+        </property>
+        <property name="member4" type="java.lang.String">
+            <column name="member4" />
+        </property>
+        <property name="member5" type="java.lang.String">
+            <column name="member5" />
+        </property>
+        <property name="sftj" type="int">
+            <column name="sftj" />
+        </property>
+        <property name="sflx" type="int">
+            <column name="sflx" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd"><!-- bean definitions here -->
+	<!-- 配置c3p0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 注入属性值 -->
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql:///research?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai&amp;zeroDateTimeBehavior=convertToNull"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="bolin123."></property>
+	</bean>
+	
+	<!-- 把sessionFactory的创建交给spring -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- 绑定数据库 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 指定hibernate核心配置文件位置 -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+	<!-- 创建hibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 创建事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 创建dao对象 -->
+	<bean id="dao" class="tk.snolin.dao.Dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<!-- 创建Service对象 -->
+	<bean id="service" class="tk.snolin.service.Service">
+		<property name="dao" ref="dao"></property>
+	</bean>
+	<!-- 创建action -->
+	<bean id="loginAction" class="tk.snolin.action.LoginAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="getInfoAction" class="tk.snolin.action.GetInfoAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="insertAction" class="tk.snolin.action.InsertAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="selectAction" class="tk.snolin.action.SelectAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="updateAction" class="tk.snolin.action.UpdateAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="deleteAction" class="tk.snolin.action.DeleteAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="updateordeleteAction" class="tk.snolin.action.UpdateOrDeleteAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="shengheAction" class="tk.snolin.action.ShengheAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="shengheupdateAction" class="tk.snolin.action.ShengheUpdateAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="shenghedeleteAction" class="tk.snolin.action.ShengheDeleteAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+	<bean id="tongjiAction" class="tk.snolin.action.TongjiAction" scope="prototype">
+		<property name="service" ref="service"></property>
+	</bean>
+</beans>

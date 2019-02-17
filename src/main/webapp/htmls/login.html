@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登陆界面</title>
+</head>
+<style>
+    body {
+        height: 100%;
+	    width: 100%;
+        background-size: cover;
+        background-color:#e9ecef;
+    }
+    .mainarea {
+        background-color:snow;
+        max-width: 325px;
+        padding: top 10px;
+        border: 1px solid #e9ecef;
+        border-radius: .25rem;
+        margin:8% auto;
+    }
+    .loginform{
+        margin-bottom: 2rem;
+    }
+    .main-title{
+        font-size: 2em;
+        font-weight: 400;
+        font-family:'Microsoft Yahei';
+        color:red;
+    }
+    .zh-label,.pwd-label{
+        font-size: 1.25em;
+        font-family:'Microsoft Yahei';
+    }
+    .pwd-kuang,.zh-kuang{
+        display: block;
+        width:90%;
+        border: 1px solid #e9ecef;
+        border-radius: .25rem;
+        height: 25px;
+        margin: 0 auto;
+    }
+    .login-button,.vip-login-button{
+        display: block;
+        width:90%;
+        font-size: 17px;
+        margin: 0 auto;
+    }
+</style>
+<body>
+    <!--标题-->
+	<div class="mainarea">
+        <h1 class="main-title">科研项目信息管理系统</h1>
+    <!--登陆表单-->
+    <form class="loginform" method="POST" action="login.action">
+        <div class="zhanghao">
+            <label class="zh-label">账号：<br/><input name="username" id="zh-kuang" class="zh-kuang"  type="text"/></label>
+        </div>
+        <div class="mima">
+            <label class="pwd-label">密码：<br/><input name="password" id="pwd-kuang" class="pwd-kuang"  type="password"/></label>
+        </div>
+        <br/>
+        <div class="buttonarea">
+            <input class="login-button" type="submit" value="登陆"/><br/>
+            <input class="vip-login-button" type="reset" value="重置"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>
